@@ -7,13 +7,41 @@ import Branch from './branch';
 
 const GeneralInfo = (props) => {
   const { companyInformation } = props;
-  const [totalBranches, setTotalBranches] = React.useState([<Branch key={0} />]);
+  
+  const removeBranch = (branchIndex) => {
+
+    const updatedBranches = companyInformation.branches.filter((item, index) => index !== branchIndex);
+    
+    if(updatedBranches.length) {
+      props.saveCompanyDetails({
+        branches: updatedBranches,
+      });
+    }
+  };
 
   const handleInformationChange = (event) => {
     const { target } = event;
 
     props.saveCompanyDetails({
       [target.name]: target.value,
+    });
+  };
+
+  let addNewBranch = () => {
+    const arr = [...companyInformation.branches, {city: '', name: '', notes: ''}];
+    props.saveCompanyDetails({
+      branches: arr,
+    });
+  };
+
+  const handleChange = (event, index) => {
+    const { target } = event;
+
+    const tempBranches = [...companyInformation.branches];
+    tempBranches[index][target.name] = target.value;
+
+    props.saveCompanyDetails({
+      branches: tempBranches,
     });
   };
 
@@ -49,10 +77,14 @@ const GeneralInfo = (props) => {
         </div>
       </div>
       <p className={styles.branchHeading}>Branches</p>
-      { totalBranches }
+      {
+        companyInformation.branches.map((item, index) => (
+          <Branch key={index} item={item} removeBranch={removeBranch} id={index} handleChange={handleChange} />
+        ))
+      }
       <p
         className={styles.addBranch}
-        onClick={() => setTotalBranches(totalBranches.concat(<Branch key={totalBranches.length} />))}
+        onClick={addNewBranch}
       >
         Add another branch
       </p>
@@ -62,7 +94,7 @@ const GeneralInfo = (props) => {
 
 const mapStateToProps = (state) => {
   return {
-    companyInformation: state.profileReducer,
+    companyInformation: state.profileReducer.company_details,
   };
 };
 
