@@ -13,7 +13,7 @@ import ActionTypes from '../../redux/action';
 import utils from "../../utils";
 
 const Profile = (props) => {
-  const { company_details, sale_details, customer_details, active_step, branch_status } = props;
+  const { company_details, sale_details, customer_details, active_step } = props;
 
   const loadStepperContent = () => {
     switch (active_step) {

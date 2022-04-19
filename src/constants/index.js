@@ -21,4 +21,9 @@ const countries = [
   { value: 'kuwait', label: 'Kuwait' },
 ];
 
-export { steps, age_groups, gender, countries };
+const categories = [
+  { value: "online", label: "Online Grocery"},
+  { value: "door", label: "Door to door delivery"},
+]
+
+export { steps, age_groups, gender, countries, categories };

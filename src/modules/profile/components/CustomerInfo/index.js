@@ -6,6 +6,8 @@ import { age_groups, gender , countries } from "../../../../constants";
 
 const CustomerInfo = (props) => {
 
+  const { customer_details } = props;
+
   const handleCustomerInfoChange = (event) => {
     const { target } = event;
 
@@ -13,13 +15,13 @@ const CustomerInfo = (props) => {
 
     if(target.name !== 'gender') {
       
-      const index = props.customer_details[target.name].find(item => item === target.value);
+      const index = customer_details[target.name].find(item => item === target.value);
       
       if(index) {
-        value = props.customer_details[target.name].filter(item => item !== index);
+        value = customer_details[target.name].filter(item => item !== index);
       }
       else {
-        value = props.customer_details[target.name].concat([target.value]);
+        value = customer_details[target.name].concat([target.value]);
       }
     }
     else {
@@ -31,14 +33,15 @@ const CustomerInfo = (props) => {
     });
   };
 
-  const loadGender = gender.map(item => (
-    <div className="form-check form-check-inline">
+  const loadGender = gender.map((item, index) => (
+    <div className="form-check form-check-inline" key={index}>
       <input
         className="form-check-input"
         type="radio"
         name="gender"
         id={item.value}
         value={item.value}
+        checked={customer_details.gender === item.value}
         onChange={handleCustomerInfoChange}
       />
       <label className="form-check-label" htmlFor="male">
@@ -47,22 +50,24 @@ const CustomerInfo = (props) => {
     </div>
   ));
 
-  const loadAgeGroups = age_groups.map(item => (
-    <div className="form-check">
+  const loadAgeGroups = age_groups.map((item, index) => (
+    <div className="form-check" key={index}>
       <input
+        
         className="form-check-input"
         type="checkbox"
         id={item.value}
         value={item.value}
         name='age_groups'
         onChange={handleCustomerInfoChange}
+        checked={customer_details.age_groups.includes(item.value)}
       />
       <label className="form-check-label" htmlFor="tween">{item.label}</label>
     </div>
   ));
 
-  const loadCountries = countries.map(item => (
-    <div className="form-check">
+  const loadCountries = countries.map((item, index) => (
+    <div className="form-check" key={index}>
       <input
         className="form-check-input"
         name="countries"
@@ -70,6 +75,7 @@ const CustomerInfo = (props) => {
         id={item.value}
         value={item.value}
         onChange={handleCustomerInfoChange}
+        checked={customer_details.countries.includes(item.value)}
       />
       <label className="form-check-label" htmlFor="saudi_arabia">{item.value}</label>
     </div>

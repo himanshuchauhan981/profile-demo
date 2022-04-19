@@ -1,30 +1,14 @@
 import React from "react";
 import { connect } from "react-redux";
-import ReactSelect, { components } from "react-select";
+import ReactSelect from "react-select";
 
+import Option from "../../../../shared/components/Option";
 import ActionTypes from "../../../../redux/action";
-
-const categories = [
-  { value: "online", label: "Online Grocery"},
-  { value: "door", label: "Door to door delivery"},
-]
-
-const Option = (props) => {
-  return (
-    <div>
-      <components.Option {...props}>
-        <input
-          type="checkbox"
-          checked={props.isSelected}
-          onChange={() => null}
-        />{" "}
-        <label>{props.label}</label>
-      </components.Option>
-    </div>
-  );
-};
+import { categories } from "../../../../constants";
 
 const SaleInfo = (props) => {
+
+  const { saleInformation } = props;
 
   const handleSaleInfoChange = (event) => {
     let details;
@@ -62,6 +46,7 @@ const SaleInfo = (props) => {
             }}
             onChange={handleSaleInfoChange}
             allowSelectAll={true}
+            value={saleInformation.categories}
           />
         </div>
       </div>
@@ -76,11 +61,18 @@ const SaleInfo = (props) => {
             className="w-100 form-control"
             name="currency"
             onChange={handleSaleInfoChange}
+            value={saleInformation.currency}
           />
         </div>
       </div>
     </div>
   );
+};
+
+const mapStateToProps = (state) => {
+  return {
+    saleInformation: state.profileReducer.sale_details,
+  };
 };
 
 const mapDispatchToProps = (dispatch) => {
@@ -94,4 +86,4 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-export default connect(null, mapDispatchToProps)(SaleInfo);
+export default connect(mapStateToProps, mapDispatchToProps)(SaleInfo);
