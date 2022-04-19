@@ -1,0 +1,99 @@
+.heading {
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.stepperContent {
+  background-color: white;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+}
+
+.nextButton {
+  background-color: orange;
+  padding: 8px 32px;
+  border: none;
+  border-radius: 3px;
+  color: white;
+  letter-spacing: 1px;
+}
+
+.active {
+  border: 1px solid orange !important;
+  border-radius: 3px;
+  color: orange;
+}
+
+.saveButton {
+  border: none;
+  background-color: #F0F0F0;
+  letter-spacing: 1px;
+}
+
+.backButton {
+  border: 1px solid orange;
+  padding: 8px 32px;
+  margin-right: 10px;
+  border-radius: 3px;
+  color: orange;
+  letter-spacing: 1px;
+}
+
+.stepperHeading {
+  font-weight: bold;
+  font-size: 18px;
+  margin-top: 10px;
+  margin-bottom: 0px;
+  padding: 10px;
+  letter-spacing: 1px;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  border: 1px solid #E3DFDF;
+}
+
+
+
+.info {
+  border-radius: 6px;
+  background-color: white;
+  padding: 10px;
+}
+
+.companyInfo p {
+  margin-bottom: 0px;
+}
+
+.companyInfo p:first-child {
+  padding-bottom: 5px;
+}
+
+.companyInfo p:not(:first-child) {
+  padding-left: 10px;
+}
+
+.infoGroup {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin-bottom: 5px;
+}
+
+.infoGroup p {
+  margin-bottom: 0px !important;
+}
+
+.check {
+  padding: 5px;
+}
+
+.completed {
+  color: green;
+}
+
+.completedCheck {
+  background-color: green;
+  color: white;
+  padding: 5px;
+  margin-right: 5px;
+  border-radius: 50%;
+}

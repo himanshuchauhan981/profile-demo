@@ -1,0 +1,18 @@
+.description {
+  border: none;
+  border-collapse: collapse;
+  border: 1px solid #DFDDDD;
+  border-radius: 5px !important;
+}
+
+.branchHeading {
+  font-weight: bold;
+  font-size: 22px;
+  margin: 15px 0px;
+}
+
+.addBranch {
+  color: red;
+  margin: 0px;
+  cursor: pointer;
+}
